@@ -25,3 +25,8 @@ on a piece of paper. However, this piece of paper quickly became messy and illeg
 want to create a Java application to keep track of my learning
 for me. I hope to never have to worry about running out of paper space ever again!
 
+## User Stories
+1. As a user, I want to be able to create a new language folder and add it to a list of existing language folders
+2. As a user, I want to be able to select a language folder and add a new flashcard to it
+3. As a user, I want to be able to select a language folder and remove a flashcard from it
+4. As a user, I want to be able to select a language folder and view a list of flashcards in that folder
