@@ -7,7 +7,7 @@ Quizolingo is a desktop application for **aspiring polyglots** to improve
 their world language proficiencies in a fun and interactive way.  
 
 Some basic features include:
-- creating "paths" (folders) for different languages
+- viewing "paths" (folders) for available languages (English, French, Mandarin)
 - creating and viewing flashcards with characters, phrases, or sentences
 - practice sessions using a random assortment of user-created flashcards
 - displaying a list of all uploaded phrases
@@ -26,7 +26,7 @@ want to create a Java application to keep track of my learning
 for me. I hope to never have to worry about running out of paper space ever again!
 
 ## User Stories
-1. As a user, I want to be able to create a new language folder and add it to a list of existing language folders
+1. As a user, I want to be able to view a list of available language folders
 2. As a user, I want to be able to select a language folder and add a new flashcard to it
 3. As a user, I want to be able to select a language folder and remove a flashcard from it
 4. As a user, I want to be able to select a language folder and view a list of flashcards in that folder
