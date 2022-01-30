@@ -41,6 +41,17 @@ public class Folder {
         return false;
     }
 
+    // REQUIRES: this.flashcards.size() must be > 0
+    public Flashcard getFlashcardByPhrase(String phrase) {
+        for (Flashcard flashcard : this.flashcards) {
+            if (flashcard.getPhrase() == phrase) {
+                return flashcard;
+            }
+        }
+
+        return new Flashcard("", "", 0);
+    }
+
     public List<Flashcard> getFlashcards() {
         return this.flashcards;
     }

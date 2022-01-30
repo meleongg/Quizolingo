@@ -19,6 +19,7 @@ UpdateProficiencyRating() REQUIRES vs EFFECTS for diff rating?
 - AND if flashcard exists?
 Should addFlashcard just take it 1 flashcard as input?
 Should I test rating change from 1 to 1?
+Do I need to test getFlashcardByName() ? is there a better way to do it?
 
 */
 
