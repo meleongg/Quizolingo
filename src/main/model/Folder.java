@@ -17,7 +17,7 @@ public class Folder {
     //          exist with the same phrase
     public void addFlashcard(Flashcard flashcard) {
         if (!checkPhraseAlreadyExists(flashcard.getPhrase())) {
-            flashcards.add(flashcard);
+            this.flashcards.add(flashcard);
         }
     }
 
@@ -26,7 +26,7 @@ public class Folder {
     //          if flashcard exists
     public void removeFlashcard(Flashcard flashcard) {
         if (this.flashcards.contains(flashcard)) {
-            flashcards.remove(flashcard);
+            this.flashcards.remove(flashcard);
         }
     }
 
@@ -34,7 +34,7 @@ public class Folder {
     //          already exists in the flashcards field, else false
     public boolean checkPhraseAlreadyExists(String phrase) {
         for (Flashcard flashcard : this.flashcards) {
-            if (flashcard.getPhrase() == phrase) {
+            if (flashcard.getPhrase().equals(phrase)) {
                 return true;
             }
         }
@@ -44,7 +44,7 @@ public class Folder {
     // REQUIRES: this.flashcards.size() must be > 0
     public Flashcard getFlashcardByPhrase(String phrase) {
         for (Flashcard flashcard : this.flashcards) {
-            if (flashcard.getPhrase() == phrase) {
+            if (flashcard.getPhrase().equals(phrase)) {
                 return flashcard;
             }
         }
