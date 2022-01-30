@@ -4,45 +4,50 @@ package model;
 // a translation in the language the user is already proficient in,
 // and a proficiency rating within [1, 5]
 public class Flashcard {
+    private String phrase;
+    private String translation;
+    private int proficiencyRating;
 
     /*
     * REQUIRES: phrase and translation have non-zero lengths, proficiencyRating is [1, 5]
     * EFFECTS: intializes a flashcard instance with the given parameters
     */
-    public Flashcard(String phrase, String translation, int rating) {
-        // stub
+    public Flashcard(String phrase, String translation, int proficiencyRating) {
+        this.phrase = phrase;
+        this.translation = translation;
+        this.proficiencyRating = proficiencyRating;
     }
 
     // REQUIRES: phrase has non-zero length
     // MODIFIES: this
     // EFFECTS: updates the flashcard's phrase
     public void setPhrase(String phrase) {
-        // stub
+        this.phrase = phrase;
     }
 
     // REQUIRES: translation has non-zero length
     // MODIFIES: this
     // EFFECTS: updates the flashcard's translation
     public void setTranslation(String translation) {
-        // stub
+        this.translation = translation;
     }
 
     // REQUIRES: rating [1, 5]
     // MODIFIES: this
     // EFFECTS: updates the flashcard's current proficiencyRating to be rating
     public void setProficiencyRating(int rating) {
-        // stub
+        this.proficiencyRating = rating;
     }
 
     public String getPhrase() {
-        return "";
+        return this.phrase;
     }
 
     public String getTranslation() {
-        return "";
+        return this.translation;
     }
 
     public int getProficiencyRating() {
-        return 0;
+        return this.proficiencyRating;
     }
 }
