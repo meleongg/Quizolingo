@@ -11,6 +11,9 @@ public class QuizolingoApp {
     private List<String> commands;
     private Folder folder;
 
+    public static final int MIN_PROFICIENCY_RATING = 1;
+    public static final int MAX_PROFICIENCY_RATING = 5;
+
     // EFFECTS: initializes a new scanner, processing user input functionality,
     //          a list of available commands, and a new language folder
     public QuizolingoApp() {
@@ -155,14 +158,14 @@ public class QuizolingoApp {
     //          and is of a non-zero length
     private String getStringInput(String message) {
         String userInput = "";
-        boolean checkInputIsString = true;
+        boolean validatingInput = true;
 
-        while (checkInputIsString) {
+        while (validatingInput) {
             System.out.println(message);
             userInput = input.nextLine();
 
-            if ((userInput instanceof String) && checkNonZeroStringLength(userInput)) {
-                checkInputIsString = false;
+            if (checkNonZeroStringLength(userInput)) {
+                validatingInput = false;
             } else {
                 System.out.println("Invalid input!");
             }
@@ -171,19 +174,20 @@ public class QuizolingoApp {
         return userInput;
     }
 
-    // EFFECTS: prompts user for integer input until given input is of type integer
-    //          and within [1, 5]
+    // REQUIRES: user input is of data type integer
+    // EFFECTS: prompts user for integer input until given input is
+    //          within [MIN_PROFICIENCY_RATING, MAX_PROFICIENCY_RATING]
     private Integer getIntegerInput(String message) {
         int userInput = 0;
-        boolean checkInputIsInt = true;
+        boolean validatingInput = true;
 
-        while (checkInputIsInt) {
+        while (validatingInput) {
             System.out.println(message);
             userInput = input.nextInt();
             input.nextLine();
 
-            if ((userInput == (int)userInput) && checkIntegerBetweenOneAndFive(userInput)) {
-                checkInputIsInt = false;
+            if (checkIntegerBetweenOneAndFive(userInput)) {
+                validatingInput = false;
             } else {
                 System.out.println("Invalid Input!");
             }
@@ -201,9 +205,10 @@ public class QuizolingoApp {
         return false;
     }
 
-    // EFFECTS: produces true if integer is within [1, 5], else false
+    // EFFECTS: produces true if integer is within [MIN_PROFICIENCY_RATING, MAX_PROFICIENCY_RATING],
+    //          else false
     private boolean checkIntegerBetweenOneAndFive(int integer) {
-        if ((integer >= 1) && (integer <= 5)) {
+        if ((integer >= MIN_PROFICIENCY_RATING) && (integer <= MAX_PROFICIENCY_RATING)) {
             return true;
         }
 
