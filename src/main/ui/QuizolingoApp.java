@@ -80,6 +80,7 @@ public class QuizolingoApp {
 
         Flashcard flashcard = new Flashcard(phrase, translation, proficiencyRating);
         this.folder.addFlashcard(flashcard);
+        System.out.println("Flashcard added!");
     }
 
     // MODIFIES: this
