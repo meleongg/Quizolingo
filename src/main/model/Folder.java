@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Folder application
+// Represents a folder of language flashcards
 public class Folder {
     private List<Flashcard> flashcards;
 
@@ -41,7 +41,8 @@ public class Folder {
         return false;
     }
 
-    // REQUIRES: this.flashcards.size() must be > 0
+    // EFFECTS: returns flashcard with given phrase as its phrase if
+    //          it exists, else returns a dummy flashcard
     public Flashcard getFlashcardByPhrase(String phrase) {
         for (Flashcard flashcard : this.flashcards) {
             if (flashcard.getPhrase().equals(phrase)) {
@@ -49,7 +50,7 @@ public class Folder {
             }
         }
 
-        return new Flashcard("", "", 0);
+        return new Flashcard("", "", 1);
     }
 
     public List<Flashcard> getFlashcards() {

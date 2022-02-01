@@ -1,27 +1,9 @@
 package model;
 
-import javafx.util.converter.FloatStringConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-/*
-QUESTIONS:
-
-Why aren't my tests running?
-- QuizolingoApp should be calling for the creation of a new folder class
-- folder class should be inside model with Flashcard
-- all tests & setup method should be public
-
-UpdateProficiencyRating() REQUIRES vs EFFECTS for diff rating?
-- do I need to double test UpdateProficiencyRating? Or leave only in 1 test suite?
-- AND if flashcard exists?
-Should addFlashcard just take it 1 flashcard as input?
-Should I test rating change from 1 to 1?
-Do I need to test getFlashcardByName() ? is there a better way to do it?
-
-*/
 
 class FolderTest {
     private Folder testFolder;
@@ -164,5 +146,23 @@ class FolderTest {
         assertFalse(this.testFolder.checkPhraseAlreadyExists("bonjour"));
         this.testFolder.addFlashcard(this.bonjourFlashcard);
         assertTrue(this.testFolder.checkPhraseAlreadyExists("bonjour"));
+    }
+
+    @Test
+    public void testGetFlashcardByPhraseFlashcardExists() {
+        this.testFolder.addFlashcard(this.bonjourFlashcard);
+        assertEquals(this.bonjourFlashcard, this.testFolder.getFlashcardByPhrase("bonjour"));
+    }
+
+    @Test
+    public void testGetFlashcardByPhraseFlashcardExistsWithOtherFlashcards() {
+        this.testFolder.addFlashcard(this.bonjourFlashcard);
+        this.testFolder.addFlashcard(this.savonFlashcard);
+        assertEquals(this.savonFlashcard, this.testFolder.getFlashcardByPhrase("savon"));
+    }
+
+    @Test
+    public void testGetFlashcardByPhraseFlashcardNotExists() {
+        assertEquals("", this.testFolder.getFlashcardByPhrase("bonjour").getPhrase());
     }
 }

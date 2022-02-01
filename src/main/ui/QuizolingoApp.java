@@ -11,7 +11,7 @@ public class QuizolingoApp {
     private List<String> commands;
     private Folder folder;
 
-    // EFFECTS: intializing a new scanner, processing user input functionality,
+    // EFFECTS: initializes a new scanner, processing user input functionality,
     //          a list of available commands, and a new language folder
     public QuizolingoApp() {
         this.folder = new Folder();
@@ -70,7 +70,7 @@ public class QuizolingoApp {
         int proficiencyRating;
 
         System.out.println("You chose: Add Flashcard!");
-        input.nextLine(); // this somehow fixes the weird input bug
+        input.nextLine();
         phrase = getStringInput("Please enter the flashcard phrase: ");
         System.out.println("You entered phrase as: " + phrase);
         translation = getStringInput("Please enter the flashcard translation: ");
@@ -82,7 +82,33 @@ public class QuizolingoApp {
         this.folder.addFlashcard(flashcard);
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user for input and removes the corresponding flashcard
+    //          if the number of flashcards in the folder is non-zero and a
+    //          flashcard with the given phrase exists
+    private void doRemoveFlashcard() {
+        String phrase;
+        Flashcard flashcard;
+
+        if (this.folder.getFlashcards().size() == 0) {
+            System.out.println("There are no flashcards in this folder!");
+        } else {
+            System.out.println("You chose: Remove Flashcard!");
+            input.nextLine();
+            phrase = getStringInput("Please enter a flashcard phrase: ");
+            flashcard = this.folder.getFlashcardByPhrase(phrase);
+
+            if (flashcard.getPhrase().equals("")) {
+                System.out.println("Flashcard does not exist!");
+            } else {
+                this.folder.removeFlashcard(flashcard);
+                System.out.println("Flashcard removed!");
+            }
+        }
+    }
+
     // EFFECTS: displays the names of all the flashcards in folder
+    //          if the number of flashcards in the folder is non-zero
     private void doViewFlashcards() {
         if (this.folder.getFlashcards().size() == 0) {
             System.out.println("There are currently no flashcards!");
@@ -98,49 +124,34 @@ public class QuizolingoApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: prompts user for input and removes the corresponding flashcard
-    //          if the number of flashcards in the folder is non-zero
-    private void doRemoveFlashcard() {
+    // EFFECTS: prompts user for input and updates the proficiency rating for the
+    //          corresponding flashcard if the number of flashcards in the folder is non-zero
+    //          and a flashcard with the given phrase exists
+    private void doUpdateFlashcard() {
         String phrase;
+        int proficiencyRating;
         Flashcard flashcard;
 
         if (this.folder.getFlashcards().size() == 0) {
             System.out.println("There are no flashcards in this folder!");
         } else {
-            System.out.println("You chose: Remove Flashcard!");
-            // TODO: list the names of all the flashcards?
-            input.nextLine();
-            phrase = getStringInput("Please enter a flashcard phrase: ");
-            flashcard = this.folder.getFlashcardByPhrase(phrase);
-            this.folder.removeFlashcard(flashcard);
-            // TODO: should I check for phrase DNE? using the getFlashcardByName and checking for dummy return value?
-            System.out.println("Flashcard removed!");
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: prompts user for input and updates the proficiency rating for the
-    //          corresponding flashcard if the number of flashcards in the folder is non-zero
-    private void doUpdateFlashcard() {
-        String phrase;
-        int proficiencyRating;
-
-        if (this.folder.getFlashcards().size() == 0) {
-            System.out.println("There are no flashcards in this folder!");
-        } else {
             System.out.println("You chose: Update Flashcard's Proficiency Rating!");
-            // TODO: list the names of all the flashcards?
             input.nextLine();
             phrase = getStringInput("Please enter the phrase of the flashcard to update: ");
-            // TODO: should I check for phrase DNE? using the getFlashcardByName and checking for dummy return value?
-            Flashcard flashcard = this.folder.getFlashcardByPhrase(phrase);
-            proficiencyRating = getIntegerInput("Please enter the new proficiency rating: ");
-            flashcard.setProficiencyRating(proficiencyRating);
-            System.out.println("Flashcard updated!");
+            flashcard = this.folder.getFlashcardByPhrase(phrase);
+
+            if (flashcard.getPhrase().equals("")) {
+                System.out.println("Flashcard does not exist!");
+            } else {
+                proficiencyRating = getIntegerInput("Please enter the new proficiency rating: ");
+                flashcard.setProficiencyRating(proficiencyRating);
+                System.out.println("Flashcard updated!");
+            }
         }
     }
 
-    // EFFECTS: obtains the user's string input
+    // EFFECTS: prompts user for string input until given input is of type string
+    //          and is of a non-zero length
     private String getStringInput(String message) {
         String userInput = "";
         boolean checkInputIsString = true;
@@ -159,7 +170,8 @@ public class QuizolingoApp {
         return userInput;
     }
 
-    // EFFECTS: obtains the user's integer input
+    // EFFECTS: prompts user for integer input until given input is of type integer
+    //          and within [1, 5]
     private Integer getIntegerInput(String message) {
         int userInput = 0;
         boolean checkInputIsInt = true;
@@ -188,7 +200,7 @@ public class QuizolingoApp {
         return false;
     }
 
-    // EFFECTS: produces true if integer is [1, 5], else false
+    // EFFECTS: produces true if integer is within [1, 5], else false
     private boolean checkIntegerBetweenOneAndFive(int integer) {
         if ((integer >= 1) && (integer <= 5)) {
             return true;
@@ -197,7 +209,7 @@ public class QuizolingoApp {
         return false;
     }
 
-    // EFFECTS: displays menu of options to user
+    // EFFECTS: displays menu of command options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         for (String command : this.commands) {
