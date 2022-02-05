@@ -28,8 +28,6 @@ class FolderTest {
         assertEquals(0, this.testFolder.getFlashcards().size());
     }
 
-    // TODO: test runFolder? how to test if app responds correctly to input?
-
     @Test
     public void testAddOneFlashcard() {
         this.testFolder.addFlashcard(this.bonjourFlashcard);

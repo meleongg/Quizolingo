@@ -14,8 +14,8 @@ public class QuizolingoApp {
     public static final int MIN_PROFICIENCY_RATING = 1;
     public static final int MAX_PROFICIENCY_RATING = 5;
 
-    // EFFECTS: initializes a new scanner, processing user input functionality,
-    //          a list of available commands, and a new language folder
+    // EFFECTS: initializes a new language folder, a list of available commands,
+    //          a new scanner, and processing user input functionality
     public QuizolingoApp() {
         this.folder = new Folder();
         this.commands = new ArrayList<>(Arrays.asList("Add Flashcard",
@@ -174,8 +174,8 @@ public class QuizolingoApp {
         return userInput;
     }
 
-    // REQUIRES: user input is of data type integer
-    // EFFECTS: prompts user for integer input until given input is
+    // REQUIRES: user input is of integer data type
+    // EFFECTS: prompts user for input until given input is
     //          within [MIN_PROFICIENCY_RATING, MAX_PROFICIENCY_RATING]
     private Integer getIntegerInput(String message) {
         int userInput = 0;
