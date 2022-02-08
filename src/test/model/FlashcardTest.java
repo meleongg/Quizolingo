@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static ui.QuizolingoApp.MIN_PROFICIENCY_RATING;
+import static ui.QuizolingoApp.MAX_PROFICIENCY_RATING;
+
 public class FlashcardTest {
     private Flashcard bonjourFlashcard;
 
@@ -49,17 +52,17 @@ public class FlashcardTest {
     }
 
     @Test
-    public void testSetProficiencyRatingTo1() {
+    public void testSetProficiencyRatingToMin() {
         assertEquals(3, this.bonjourFlashcard.getProficiencyRating());
-        this.bonjourFlashcard.setProficiencyRating(1);
-        assertEquals(1, this.bonjourFlashcard.getProficiencyRating());
+        this.bonjourFlashcard.setProficiencyRating(MIN_PROFICIENCY_RATING);
+        assertEquals(MIN_PROFICIENCY_RATING, this.bonjourFlashcard.getProficiencyRating());
     }
 
     @Test
-    public void testSetProficiencyRatingTo5() {
+    public void testSetProficiencyRatingToMax() {
         assertEquals(3, this.bonjourFlashcard.getProficiencyRating());
-        this.bonjourFlashcard.setProficiencyRating(5);
-        assertEquals(5, this.bonjourFlashcard.getProficiencyRating());
+        this.bonjourFlashcard.setProficiencyRating(MAX_PROFICIENCY_RATING);
+        assertEquals(MAX_PROFICIENCY_RATING, this.bonjourFlashcard.getProficiencyRating());
     }
 
     @Test
