@@ -31,6 +31,7 @@ public class QuizolingoApp {
     // EFFECTS: processes the users input and executes the command if
     //          user input command is in the list of commands
     // method code inspired by TellerApp's runTeller method
+    // repo link: https://github.students.cs.ubc.ca/CPSC210/TellerApp
     private void runQuizolingoApp() {
         String command = "";
         boolean currentlyGettingInput = true;
@@ -53,6 +54,7 @@ public class QuizolingoApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     // method code inspired by TellerApp's processCommand method
+    // repo link: https://github.students.cs.ubc.ca/CPSC210/TellerApp
     private void processCommand(String command) {
         if (command.equals("a")) {
             doAddFlashcard();
