@@ -2,29 +2,39 @@ package ui;
 
 import model.Flashcard;
 import model.Folder;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 // class inspired by TellerApp (link: https://github.students.cs.ubc.ca/CPSC210/TellerApp)
-// Quizolingo language flashcards application
+// Represents the language flashcards application
 public class QuizolingoApp {
+    private static final String JSON_STORE = "./data/folder.json";
     private Scanner input;
     private List<String> commands;
     private Folder folder;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public static final int MIN_PROFICIENCY_RATING = 1;
     public static final int MAX_PROFICIENCY_RATING = 5;
 
-    // EFFECTS: initializes a new language folder, a list of available commands,
-    //          a new scanner, and processing user input functionality
+    // EFFECTS: initializes a new language folder and runs application
     public QuizolingoApp() {
         this.folder = new Folder();
         this.commands = new ArrayList<>(Arrays.asList("Add Flashcard",
                 "Remove Flashcard",
                 "View Flashcards",
                 "Update Flashcard Proficiency",
+                "Save Folder to File",
+                "Load Folder from File",
                 "Quit"));
         input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runQuizolingoApp();
     }
 
@@ -61,6 +71,10 @@ public class QuizolingoApp {
             doViewFlashcards();
         } else if (command.equals("u")) {
             doUpdateFlashcard();
+        } else if (command.equals("s")) {
+            doSaveFolder();
+        } else if (command.equals("l")) {
+            doLoadFolder();
         } else {
             System.out.println("Selection invalid!");
         }
@@ -152,6 +166,29 @@ public class QuizolingoApp {
                 flashcard.setProficiencyRating(proficiencyRating);
                 System.out.println("Flashcard updated!");
             }
+        }
+    }
+
+    // EFFECTS: saves the folder to file
+    private void doSaveFolder() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(this.folder);
+            jsonWriter.close();
+            System.out.println("Saved folder to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads folder from file
+    private void doLoadFolder() {
+        try {
+            this.folder = jsonReader.read();
+            System.out.println("Loaded folder from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

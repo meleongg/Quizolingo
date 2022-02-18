@@ -1,0 +1,12 @@
+{"flashcards": [
+    {
+        "phrase": "bonjour",
+        "proficiencyRating": 3,
+        "translation": "hello"
+    },
+    {
+        "phrase": "lardon",
+        "proficiencyRating": 5,
+        "translation": "bacon"
+    }
+]}
