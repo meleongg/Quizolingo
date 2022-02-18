@@ -17,6 +17,13 @@ public class Folder implements Writable {
         this.flashcards = new ArrayList<>();
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("flashcards", flashcardsToJson());
+        return json;
+    }
+
     // MODIFIES: this
     // EFFECTS: adds flashcard to list of flashcards if a flashcard does not already
     //          exist with the same phrase
@@ -44,13 +51,6 @@ public class Folder implements Writable {
             }
         }
         return false;
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("flashcards", flashcardsToJson());
-        return json;
     }
 
     private JSONArray flashcardsToJson() {
