@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a folder of language flashcards
-public class Folder {
+public class Folder implements Writable {
     private List<Flashcard> flashcards;
 
     // EFFECTS: initializes folder with 0 flashcards
@@ -39,6 +44,23 @@ public class Folder {
             }
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("flashcards", flashcardsToJson());
+        return json;
+    }
+
+    private JSONArray flashcardsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Flashcard flashcard : this.flashcards) {
+            jsonArray.put(flashcard.toJson());
+        }
+
+        return jsonArray;
     }
 
     // EFFECTS: returns flashcard with given phrase as its phrase if

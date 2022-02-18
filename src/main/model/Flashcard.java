@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /*
 * Represents a flashcard that has a phrase in the language the user is wishing to learn,
 * a translation in the language the user is already proficient in,
 * and a proficiency rating for the phrase on a scale of 1 to 5
 */
-public class Flashcard {
+public class Flashcard implements Writable {
     private String phrase;
     private String translation;
     private int proficiencyRating;
@@ -16,6 +19,15 @@ public class Flashcard {
         this.phrase = phrase;
         this.translation = translation;
         this.proficiencyRating = proficiencyRating;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("phrase", this.phrase);
+        json.put("translation", this.translation);
+        json.put("proficiencyRating", this.proficiencyRating);
+        return json;
     }
 
     // REQUIRES: phrase has non-zero length
