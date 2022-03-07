@@ -8,5 +8,10 @@
         "phrase": "lardon",
         "proficiencyRating": 5,
         "translation": "bacon"
+    },
+    {
+        "phrase": "ici",
+        "proficiencyRating": 4,
+        "translation": "here"
     }
 ]}
