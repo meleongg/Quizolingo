@@ -1,17 +1,17 @@
 {"flashcards": [
     {
-        "phrase": "bonjour",
-        "proficiencyRating": 4,
-        "translation": "hello"
-    },
-    {
-        "phrase": "bonsoir",
-        "proficiencyRating": 1,
-        "translation": "evening"
-    },
-    {
         "phrase": "lardon",
         "proficiencyRating": 3,
         "translation": "bacon"
+    },
+    {
+        "phrase": "pain",
+        "proficiencyRating": 5,
+        "translation": "bread"
+    },
+    {
+        "phrase": "amour",
+        "proficiencyRating": 3,
+        "translation": "love"
     }
 ]}
