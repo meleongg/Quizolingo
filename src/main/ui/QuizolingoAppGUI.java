@@ -235,8 +235,50 @@ public class QuizolingoAppGUI extends JFrame {
         int number = r.nextInt(keysAsArray.size());
         String phrase = keysAsArray.get(number);
         String translation = randomTranslations.get(keysAsArray.get(number));
-        System.out.println(phrase);
-        System.out.println(translation);
+
+        renderRandomTranslation(phrase, translation);
+    }
+
+    private void renderRandomTranslation(String phrase, String translation) {
+        final JWindow randomTranslationWindow = initializeRandomTranslationWindow();
+        JPanel randomTranslationPanel = new JPanel(new GridLayout(2, 1, 0, 20));
+        addPadding(randomTranslationPanel);
+        renderTranslationLabel(phrase, translation, randomTranslationPanel);
+        renderCloseButton(randomTranslationWindow, randomTranslationPanel);
+    }
+
+    private JWindow initializeRandomTranslationWindow() {
+        final JWindow randomTranslationWindow = new JWindow(this);
+        randomTranslationWindow.setSize(400, 200);
+        randomTranslationWindow.setLocationRelativeTo(null);
+        randomTranslationWindow.setVisible(true);
+        return randomTranslationWindow;
+    }
+
+    private void renderTranslationLabel(String phrase, String translation, JPanel randomTranslationPanel) {
+        JLabel randomTranslationLabel = new JLabel("In French, the word " + phrase + " means " + translation + ".");
+
+        randomTranslationLabel.setHorizontalAlignment(JLabel.CENTER);
+        randomTranslationLabel.setVerticalAlignment(JLabel.CENTER);
+        randomTranslationPanel.add(randomTranslationLabel);
+        randomTranslationPanel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Random Translation"));
+    }
+
+    private void renderCloseButton(JWindow randomTranslationWindow, JPanel randomTranslationPanel) {
+        JPanel closeBtnPanel = new JPanel();
+        JButton closeBtn = new JButton("Close");
+        closeBtnPanel.add(closeBtn);
+        closeBtn.setSize(BTN_WIDTH, BTN_HEIGHT);
+        closeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                randomTranslationWindow.dispose();
+            }
+        });
+        randomTranslationPanel.add(closeBtnPanel);
+
+        randomTranslationWindow.add(randomTranslationPanel);
     }
 
     private void renderYourCardsLabel() {
