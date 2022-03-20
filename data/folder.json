@@ -8,5 +8,10 @@
         "phrase": "bonsoir",
         "proficiencyRating": 1,
         "translation": "evening"
+    },
+    {
+        "phrase": "lardon",
+        "proficiencyRating": 3,
+        "translation": "bacon"
     }
 ]}
