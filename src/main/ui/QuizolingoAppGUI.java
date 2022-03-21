@@ -1,6 +1,5 @@
 package ui;
 
-import exceptions.IllegalInputException;
 import model.Flashcard;
 import model.Folder;
 import persistence.JsonReader;
