@@ -92,6 +92,7 @@ public class QuizolingoAppGUI extends JFrame {
         logoPanel.setBackground(Color.white);
         logoPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         loadingScreenWindow.add(logoPanel);
+
         return logoPanel;
     }
 
@@ -103,6 +104,7 @@ public class QuizolingoAppGUI extends JFrame {
         loadingScreenWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         loadingScreenWindow.setLocationRelativeTo(null);
         loadingScreenWindow.setVisible(true);
+
         return loadingScreenWindow;
     }
 
@@ -233,7 +235,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders a new JWindow with the translation
+    // EFFECTS: renders a new JWindow with the random translation
     private void renderRandomTranslation(String phrase, String translation) {
         final JWindow randomTranslationWindow = initializeRandomTranslationWindow();
         JPanel randomTranslationPanel = new JPanel(new GridLayout(2, 1, 0, 20));
@@ -249,6 +251,7 @@ public class QuizolingoAppGUI extends JFrame {
         randomTranslationWindow.setSize(400, 200);
         randomTranslationWindow.setLocationRelativeTo(null);
         randomTranslationWindow.setVisible(true);
+
         return randomTranslationWindow;
     }
 
@@ -390,7 +393,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders the flashcard labels
+    // EFFECTS: renders one flashcard's labels
     private void renderFlashcardPanelContent(Flashcard flashcard, JPanel flashcardPanel) {
         JLabel phraseLbl;
         JLabel translationLbl;
@@ -410,7 +413,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders the flashcard remove button and initializes a removeBtn event listener
+    // EFFECTS: renders one flashcard's remove button and initializes its event listener
     private void renderFlashcardRemoveButton(Flashcard flashcard, JPanel flashcardPanel) {
         JButton removeBtn;
         JPanel removeBtnPanel = new JPanel();
@@ -446,7 +449,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders the form to add a new flashcard
+    // EFFECTS: renders the flashcard input form
     private void renderFlashcardInputForm() {
         flashcardInputFormWindow = initializeFlashcardInputForm();
         renderFlashcardInputFormWindow(flashcardInputFormWindow);
@@ -464,7 +467,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders the JWindow to add a new flashcard
+    // EFFECTS: renders the JWindow for the flashcard input form
     private void renderFlashcardInputFormWindow(JWindow window) {
         JPanel flashcardInputFormPanel = initializeFlashcardInputFormPanel();
         renderFlashcardInputFormPanelInputs(flashcardInputFormPanel);
@@ -491,7 +494,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders the confirm button to add a new flashcard for the flashcard input form
+    // EFFECTS: renders the confirm button for the flashcard input form
     private void renderFlashcardInputFormPanelConfirmBtn(JPanel flashcardInputFormPanel) {
         confirmBtn = new JButton("Add");
         confirmBtn.addActionListener(new ActionListener() {
@@ -533,10 +536,8 @@ public class QuizolingoAppGUI extends JFrame {
         if (str.length() != 0) {
             return true;
         }
-
         return false;
     }
-
 
     // MODIFIES: this
     // EFFECTS: renders the cancel button for the flashcard input form
