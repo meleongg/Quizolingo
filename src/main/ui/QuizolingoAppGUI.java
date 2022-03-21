@@ -42,13 +42,18 @@ public class QuizolingoAppGUI extends JFrame {
 
     public static final int MIN_PROFICIENCY_RATING = 1;
     public static final int MAX_PROFICIENCY_RATING = 5;
-    private static final int FRAME_WIDTH = 800;
-    private static final int FRAME_HEIGHT = 500;
+    private static final int FRAME_WIDTH = 1100;
+    private static final int FRAME_HEIGHT = 690;
     private static final int FORM_WIDTH = 300;
     private static final int FORM_HEIGHT = 300;
     private static final int BTN_WIDTH = 120;
     private static final int BTN_HEIGHT = 40;
     private static final int PADDING = 40;
+
+    private static final Color DARK_GREEN = new Color(106, 206, 70);
+    private static final Color LIGHT_GREEN = new Color(159, 232, 133);
+    private static final Color WHITE = new Color(255, 255, 255);
+    private static final Color GRAY = new Color(171, 171, 171);
 
     // creates GUI for Quizolingo App
     public QuizolingoAppGUI() {
@@ -69,6 +74,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: renders the loading screen
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private void renderLoadingScreen() {
         final JWindow loadingScreenWindow = initializeLoadingScreenWindow();
         JPanel logoPanel = renderLogoPanel(loadingScreenWindow);
@@ -80,6 +86,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: renders the logo panel onto the loading screen JWindow
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private JPanel renderLogoPanel(JWindow loadingScreenWindow) {
         JPanel logoPanel = new JPanel();
         logoPanel.setBackground(Color.white);
@@ -90,6 +97,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: initializes the JWindow's properties for the loading screen
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private JWindow initializeLoadingScreenWindow() {
         final JWindow loadingScreenWindow = new JWindow(this);
         loadingScreenWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -100,6 +108,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: adds and adjusts the logo image onto the logo panel
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private void addLogo(JPanel panel) {
         String imagePath = "data/logo.png";
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(FRAME_WIDTH,
@@ -112,6 +121,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: adds a JProgressBar representing the application loading
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private void addProgressBar(JWindow loadingScreen) {
         UIManager.put("ProgressBar.background", Color.white);
         UIManager.put("ProgressBar.foreground", Color.green);
@@ -125,6 +135,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: adds a timer to keep track of the loading time and when to switch to the home page
+    // SOURCE: https://www.youtube.com/watch?v=pNup-WzHwRs
     private void addTimer(JWindow loadingScreen, JProgressBar progress) {
         timer = new Timer(100, new ActionListener() {
             @Override
@@ -157,8 +168,13 @@ public class QuizolingoAppGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: renders the title on the home page
     private void renderTitle() {
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(DARK_GREEN);
+        addPadding(titlePanel, 40, 0, 0, 0);
         titleLbl = new JLabel("Quizolingo App!", JLabel.CENTER);
-        add(titleLbl);
+        titleLbl.setForeground(WHITE);
+        titlePanel.add(titleLbl);
+        add(titlePanel);
     }
 
     // MODIFIES: this
@@ -166,7 +182,7 @@ public class QuizolingoAppGUI extends JFrame {
     private void renderMenuPanel() {
         menuPanel = new JPanel(new GridLayout(1, 3, 60, 0));
         menuPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        addPadding(menuPanel);
+        addPadding(menuPanel, 0, PADDING, 0, PADDING);
 
         renderYourCardsLabel();
         renderRandomTranslationButton();
@@ -195,8 +211,7 @@ public class QuizolingoAppGUI extends JFrame {
                 getRandomTranslation();
             }
         });
-        randomWordButton.setHorizontalAlignment(JLabel.CENTER);
-        randomWordButton.setVerticalAlignment(JLabel.CENTER);
+        addPadding(randomWordBtnPanel, 30, 0, 0, 0);
         randomWordButton.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
         randomWordBtnPanel.add(randomWordButton);
         menuPanel.add(randomWordBtnPanel);
@@ -222,7 +237,7 @@ public class QuizolingoAppGUI extends JFrame {
     private void renderRandomTranslation(String phrase, String translation) {
         final JWindow randomTranslationWindow = initializeRandomTranslationWindow();
         JPanel randomTranslationPanel = new JPanel(new GridLayout(2, 1, 0, 20));
-        addPadding(randomTranslationPanel);
+        addPadding(randomTranslationPanel, 0, PADDING, 0, PADDING);
         renderTranslationLabel(phrase, translation, randomTranslationPanel);
         renderCloseButton(randomTranslationWindow, randomTranslationPanel);
     }
@@ -298,6 +313,7 @@ public class QuizolingoAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: loads folder from file
+    // SOURCE https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
     private void doLoadFolder() {
         try {
             this.folder = jsonReader.read();
@@ -327,6 +343,7 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // EFFECTS: saves the folder to file
+    // SOURCE https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
     private void doSaveFolder() {
         try {
             jsonWriter.open();
@@ -343,7 +360,7 @@ public class QuizolingoAppGUI extends JFrame {
     private void renderFolderPanel() {
         folderPanel = new JPanel(new GridLayout(0, 5, 25, 20));
         folderPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        addPadding(folderPanel);
+        addPadding(folderPanel, 0, PADDING, 0, PADDING);
 
         renderFlashCardPanels(folderPanel);
         add(folderPanel);
@@ -361,20 +378,45 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: renders one flashcard and adds a removeBtn event listener
+    // EFFECTS: renders one flashcard
     private JPanel renderFlashCardPanel(Flashcard flashcard) {
+        JPanel flashcardPanel = new JPanel(new GridLayout(4, 1, 0, 10));
+        flashcardPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        flashcardPanel.setBackground(LIGHT_GREEN);
+
+        renderFlashcardPanelContent(flashcard, flashcardPanel);
+
+        return flashcardPanel;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: renders the flashcard labels
+    private void renderFlashcardPanelContent(Flashcard flashcard, JPanel flashcardPanel) {
         JLabel phraseLbl;
         JLabel translationLbl;
         JLabel proficiencyLbl;
-        JButton removeBtn;
-
-        JPanel flashcardPanel = new JPanel(new GridLayout(4, 1, 0, 10));
-        flashcardPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         phraseLbl = new JLabel(flashcard.getPhrase());
+        phraseLbl.setHorizontalAlignment(JLabel.CENTER);
         translationLbl = new JLabel(flashcard.getTranslation());
+        translationLbl.setHorizontalAlignment(JLabel.CENTER);
         proficiencyLbl = new JLabel("" + flashcard.getProficiencyRating());
+        proficiencyLbl.setHorizontalAlignment(JLabel.CENTER);
+
+        flashcardPanel.add(phraseLbl);
+        flashcardPanel.add(translationLbl);
+        flashcardPanel.add(proficiencyLbl);
+        renderFlashcardRemoveButton(flashcard, flashcardPanel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: renders the flashcard remove button and initializes a removeBtn event listener
+    private void renderFlashcardRemoveButton(Flashcard flashcard, JPanel flashcardPanel) {
+        JButton removeBtn;
+        JPanel removeBtnPanel = new JPanel();
+        removeBtnPanel.setBackground(WHITE);
         removeBtn = new JButton("Remove");
+        removeBtnPanel.add(removeBtn);
         removeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -382,13 +424,7 @@ public class QuizolingoAppGUI extends JFrame {
                 renderMainPage();
             }
         });
-
-        flashcardPanel.add(phraseLbl);
-        flashcardPanel.add(translationLbl);
-        flashcardPanel.add(proficiencyLbl);
-        flashcardPanel.add(removeBtn);
-
-        return flashcardPanel;
+        flashcardPanel.add(removeBtnPanel);
     }
 
     // MODIFIES: this
@@ -441,7 +477,7 @@ public class QuizolingoAppGUI extends JFrame {
     private JPanel initializeFlashcardInputFormPanel() {
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 40, 40));
         formPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        addPadding(formPanel);
+        addPadding(formPanel, 0, PADDING, 0, PADDING);
         formPanel.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createEtchedBorder(), "Add Flashcard"));
         return formPanel;
@@ -540,13 +576,14 @@ public class QuizolingoAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds padding to the left and right of a given JPanel
-    private void addPadding(JPanel panel) {
-        panel.setBorder(BorderFactory.createEmptyBorder(0, PADDING, 0, PADDING));
+    // EFFECTS: adds padding to a given JPanel
+    private void addPadding(JPanel panel, int top, int left, int bottom, int right) {
+        panel.setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
     }
 
     // MODIFIES: this
     // EFFECTS: centers the JFrame in the middle of the user's screen
+    // SOURCE: https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
     private void centreOnScreen() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);

@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes JSON representation of a folder to file
-// class inspired by JsonSerializationDemo (link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo)
+// SOURCE: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

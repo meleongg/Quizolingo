@@ -5,13 +5,18 @@
         "translation": "bacon"
     },
     {
-        "phrase": "pain",
-        "proficiencyRating": 5,
-        "translation": "bread"
-    },
-    {
         "phrase": "amour",
         "proficiencyRating": 3,
         "translation": "love"
+    },
+    {
+        "phrase": "sldfkjds",
+        "proficiencyRating": 4,
+        "translation": "sdjfkjdsl"
+    },
+    {
+        "phrase": "dsfds",
+        "proficiencyRating": 4,
+        "translation": "sdfds"
     }
 ]}
