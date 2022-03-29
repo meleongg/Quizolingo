@@ -44,3 +44,11 @@ Mon Mar 28 18:13:00 PDT 2022
 Flashcard with phrase: "anglais" removed from folder!
 Mon Mar 28 18:13:02 PDT 2022
 Flashcard with phrase: "lardon" removed from folder!
+
+## Phase 4: Task 3
+- refactor the QuizolingoAppGUI class into smaller subclasses, where each subclass represents a specific portion of the GUI, such as TitlePanel, LoadingScreenWindow, MenuPanel, etc.
+  - many of the panels share similar BoxLayouts, so maybe I could create an abstract BoxPanel class and have all the main GUI panels extend it and override its behaviour as needed
+  - refactor duplicated code for centering labels/panels into a helper method
+  - refactor error-checking methods into a separate class (e.g. checkNonZeroStringLength())
+  - refactor methods that create external JWindows into their own independent classes, such as the loading screen and the input form
+- refactor the Folder class to store Flashcards in a HashSet instead of an ArrayList, so I don't need to worry about checking for duplicate flashcards when adding flashcards
