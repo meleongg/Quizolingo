@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +29,9 @@ public class Folder implements Writable {
     public void addFlashcard(Flashcard flashcard) {
         if (!checkPhraseAlreadyExists(flashcard.getPhrase())) {
             this.flashcards.add(flashcard);
+            String phrase = flashcard.getPhrase();
+            EventLog.getInstance().logEvent(new Event("Flashcard with phrase: "
+                    + "\"" + phrase + "\"" + " added to folder!"));
         }
     }
 
@@ -39,6 +41,9 @@ public class Folder implements Writable {
     public void removeFlashcard(Flashcard flashcard) {
         if (this.flashcards.contains(flashcard)) {
             this.flashcards.remove(flashcard);
+            String phrase = flashcard.getPhrase();
+            EventLog.getInstance().logEvent(new Event("Flashcard with phrase: "
+                    + "\"" + phrase + "\"" + " removed from folder!"));
         }
     }
 

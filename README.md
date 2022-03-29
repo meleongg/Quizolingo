@@ -32,5 +32,15 @@ for me. I hope to never have to worry about running out of paper space ever agai
 2. As a user, I want to be able to remove an existing flashcard in the language folder.
 3. As a user, I want to be able to view a list of all the flashcards in the language folder.
 4. As a user, I want to be able to update an existing flashcard's proficiency rating on a scale of one to five. 
-5. As a user, I want to be able to save my folder with flashcards to a file.
+5. As a user, I want to be able to save my folder with flashcards to file.
 6. As a user, I want to be able to load my folder with flashcards from file. 
+
+## Phase 4: Task 2
+Mon Mar 28 18:12:48 PDT 2022
+Flashcard with phrase: "anglais" added to folder!
+Mon Mar 28 18:12:54 PDT 2022
+Flashcard with phrase: "lardon" added to folder!
+Mon Mar 28 18:13:00 PDT 2022
+Flashcard with phrase: "anglais" removed from folder!
+Mon Mar 28 18:13:02 PDT 2022
+Flashcard with phrase: "lardon" removed from folder!

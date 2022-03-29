@@ -1,22 +1,12 @@
 {"flashcards": [
     {
-        "phrase": "lardon",
-        "proficiencyRating": 3,
-        "translation": "bacon"
-    },
-    {
-        "phrase": "amour",
-        "proficiencyRating": 3,
-        "translation": "love"
-    },
-    {
-        "phrase": "sldfkjds",
+        "phrase": "bonsoir",
         "proficiencyRating": 4,
-        "translation": "sdjfkjdsl"
+        "translation": "evening"
     },
     {
-        "phrase": "dsfds",
-        "proficiencyRating": 4,
-        "translation": "sdfds"
+        "phrase": "revenir",
+        "proficiencyRating": 3,
+        "translation": "to come back"
     }
 ]}

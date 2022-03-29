@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Flashcard;
 import model.Folder;
 import persistence.JsonReader;
@@ -10,6 +12,8 @@ import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -68,8 +72,25 @@ public class QuizolingoAppGUI extends JFrame {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
+        initializeQuitListener();
         renderMainPage();
         centreOnScreen();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if the user quits the main JFrame, prints out the EventLog in the console
+    // SOURCE: https://kodejava.org/how-do-i-handle-a-window-closing-event/
+    // SOURCE: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
+    private void initializeQuitListener() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next);
+                }
+                System.exit(0);
+            }
+        });
     }
 
     // MODIFIES: this
@@ -320,7 +341,6 @@ public class QuizolingoAppGUI extends JFrame {
     private void doLoadFolder() {
         try {
             this.folder = jsonReader.read();
-            System.out.println("Loaded folder from " + JSON_STORE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Unable to read from file: " + JSON_STORE);
         }
@@ -352,7 +372,6 @@ public class QuizolingoAppGUI extends JFrame {
             jsonWriter.open();
             jsonWriter.write(this.folder);
             jsonWriter.close();
-            System.out.println("Saved folder to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Unable to write to file: " + JSON_STORE);
         }
