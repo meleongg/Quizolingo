@@ -608,4 +608,9 @@ public class QuizolingoAppGUI extends JFrame {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
+
+    // EFFECTS: starts the application
+    public static void main(String[] args) {
+        new QuizolingoAppGUI();
+    }
 }

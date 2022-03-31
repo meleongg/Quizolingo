@@ -47,6 +47,7 @@ Flashcard with phrase: "lardon" removed from folder!
 
 ## Phase 4: Task 3
 - refactor the QuizolingoAppGUI class into smaller subclasses, where each subclass represents a specific portion of the GUI, such as TitlePanel, LoadingScreenWindow, MenuPanel, etc.
+  - this would reduce coupling and improve cohesion within this class
   - many of the panels share similar BoxLayouts, so maybe I could create an abstract BoxPanel class and have all the main GUI panels extend it and override its behaviour as needed
   - refactor duplicated code for centering labels/panels into a helper method
   - refactor error-checking methods into a separate class (e.g. checkNonZeroStringLength())
