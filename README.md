@@ -52,5 +52,5 @@ Flashcard with phrase: "lardon" removed from folder!
   - refactor duplicated code for centering labels/panels into a helper method
   - refactor error-checking methods into a separate class (e.g. checkNonZeroStringLength())
   - refactor methods that create external JWindows into their own independent classes, such as the loading screen and the input form
-  - separate the main method into another Main class
+  - separate the main method into a Main class
 - refactor the Folder class to store Flashcards in a HashSet instead of an ArrayList, so I don't need to worry about checking for duplicate flashcards when adding flashcards
